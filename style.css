@@ -1,0 +1,995 @@
+/**
+ * Attendance Management System - Master Stylesheet
+ * Premium Gold & Black Theme
+ * 
+ * Color Palette:
+ * - Gold: #D4AF37
+ * - Dark Gold: #B8860B
+ * - Black: #000000
+ * - Dark Background: #121212
+ * - Card Background: #1E1E1E
+ * - White Text: #FFFFFF
+ * - Light Gold Text: #F5D76E
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    /* Premium Gold & Black Palette */
+    --gold: #D4AF37;
+    --gold-dark: #B8860B;
+    --gold-light: #F5D76E;
+    --black: #000000;
+    --bg-dark: #121212;
+    --bg-card: #1E1E1E;
+    --bg-card-header: #171717;
+    --bg-input: #141414;
+    --text-white: #FFFFFF;
+    --text-gold-light: #F5D76E;
+    --text-muted: #A0A0A0;
+    --text-secondary: #D1D5DB;
+
+    /* Semantic & Functional Tokens */
+    --gold-subtle: rgba(212, 175, 55, 0.12);
+    --gold-border: rgba(212, 175, 55, 0.25);
+    --gold-border-strong: rgba(212, 175, 55, 0.55);
+    --gold-gradient: linear-gradient(135deg, #D4AF37 0%, #B8860B 100%);
+    --gold-gradient-hover: linear-gradient(135deg, #F5D76E 0%, #D4AF37 100%);
+    --gold-dashboard-bg: linear-gradient(135deg, #E2BF53 0%, #D4AF37 40%, #B8860B 100%);
+
+    /* Aliases for Bootstrap & System Compatibility */
+    --primary: var(--gold);
+    --primary-hover: var(--gold-dark);
+    --primary-light: var(--gold-subtle);
+    --primary-gradient: var(--gold-gradient);
+
+    --navy-dark: var(--black);
+    --navy-surface: var(--bg-card);
+    --navy-border: var(--gold-border);
+    --navy-muted: var(--text-muted);
+
+    --bg-light: var(--bg-dark);
+    --surface-light: var(--bg-card);
+    --border-color: var(--gold-border);
+    --text-primary: var(--text-white);
+
+    /* Spacing & Radii */
+    --sidebar-width: 260px;
+    --topbar-height: 70px;
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 20px;
+    --shadow-subtle: 0 2px 10px rgba(0, 0, 0, 0.5);
+    --shadow-card: 0 6px 22px rgba(0, 0, 0, 0.45);
+    --shadow-elevated: 0 12px 32px rgba(0, 0, 0, 0.65);
+}
+
+/* -------------------------------------------------------------
+   GLOBAL BASE STYLES
+   ------------------------------------------------------------- */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-white);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+a {
+    color: var(--gold-light);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: var(--gold);
+}
+
+/* Text Overrides for High-Contrast Readability */
+.text-dark {
+    color: var(--text-white) !important;
+}
+
+.text-secondary {
+    color: var(--text-secondary) !important;
+}
+
+.text-muted {
+    color: var(--text-muted) !important;
+}
+
+.text-primary {
+    color: var(--gold) !important;
+}
+
+.text-gold-light {
+    color: var(--text-gold-light) !important;
+}
+
+/* -------------------------------------------------------------
+   LAYOUT ARCHITECTURE
+   ------------------------------------------------------------- */
+.app-wrapper {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+    background-color: var(--bg-dark);
+}
+
+/* -------------------------------------------------------------
+   SIDEBAR (BLACK & GOLD)
+   ------------------------------------------------------------- */
+.app-sidebar {
+    width: var(--sidebar-width);
+    background: var(--black);
+    color: var(--text-white);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1030;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.6);
+    border-right: 1px solid var(--gold-border);
+}
+
+.app-sidebar .sidebar-brand {
+    height: var(--topbar-height);
+    display: flex;
+    align-items: center;
+    padding: 0 1.5rem;
+    border-bottom: 1px solid var(--gold-border);
+    gap: 0.75rem;
+    text-decoration: none;
+    color: var(--text-white);
+    background: var(--black);
+}
+
+.app-sidebar .sidebar-brand-icon {
+    width: 42px;
+    height: 42px;
+    background: var(--gold-gradient);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    color: var(--black);
+    box-shadow: 0 4px 14px rgba(212, 175, 55, 0.4);
+    font-weight: bold;
+}
+
+.app-sidebar .sidebar-brand-text {
+    font-weight: 800;
+    font-size: 1.1rem;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    color: var(--text-white);
+}
+
+.app-sidebar .sidebar-brand-text small {
+    color: var(--text-gold-light) !important;
+    font-size: 0.68rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.app-sidebar .sidebar-nav {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1.25rem 0.85rem;
+    background: var(--black);
+}
+
+.sidebar-heading {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: var(--gold-dark);
+    font-weight: 800;
+    padding: 0.85rem 0.75rem 0.35rem;
+}
+
+.nav-item-link {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.72rem 0.85rem;
+    color: #C0C0C0;
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    font-weight: 500;
+    font-size: 0.92rem;
+    transition: all 0.2s ease;
+    margin-bottom: 0.25rem;
+    border: 1px solid transparent;
+}
+
+.nav-item-link i {
+    font-size: 1.15rem;
+    width: 22px;
+    text-align: center;
+    color: var(--gold);
+    transition: transform 0.2s ease;
+}
+
+.nav-item-link:hover {
+    color: var(--text-gold-light);
+    background: var(--gold-subtle);
+    border-color: rgba(212, 175, 55, 0.3);
+}
+
+.nav-item-link:hover i {
+    transform: translateX(2px);
+    color: var(--gold-light);
+}
+
+.nav-item-link.active {
+    color: var(--black) !important;
+    background: var(--gold-gradient) !important;
+    font-weight: 700;
+    box-shadow: 0 4px 16px rgba(212, 175, 55, 0.45);
+    border-color: var(--gold-light);
+}
+
+.nav-item-link.active i {
+    color: var(--black) !important;
+}
+
+.sidebar-footer {
+    padding: 1rem 1.25rem;
+    border-top: 1px solid var(--gold-border);
+    background: var(--black);
+}
+
+/* -------------------------------------------------------------
+   MAIN CONTENT & TOPBAR (BLACK & DARK BACKGROUND)
+   ------------------------------------------------------------- */
+.app-main {
+    flex: 1;
+    margin-left: var(--sidebar-width);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: var(--bg-dark);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Topbar */
+.app-topbar {
+    height: var(--topbar-height);
+    background: var(--black);
+    border-bottom: 1px solid var(--gold-border);
+    position: sticky;
+    top: 0;
+    z-index: 1020;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.75rem;
+    box-shadow: var(--shadow-subtle);
+}
+
+.topbar-left, .topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.topbar-toggle {
+    background: transparent;
+    border: none;
+    color: var(--text-gold-light);
+    font-size: 1.35rem;
+    cursor: pointer;
+    padding: 0.35rem;
+    border-radius: var(--radius-sm);
+    display: none;
+}
+
+.topbar-toggle:hover {
+    background: var(--gold-subtle);
+    color: var(--gold);
+}
+
+/* User Pill in Topbar */
+.user-dropdown-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.35rem 0.75rem;
+    border-radius: 9999px;
+    background: var(--bg-card);
+    border: 1px solid var(--gold-border);
+    text-decoration: none;
+    color: var(--text-white);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.user-dropdown-toggle:hover {
+    background: #252525;
+    border-color: var(--gold);
+}
+
+.user-avatar-img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--gold);
+}
+
+.user-avatar-placeholder {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--gold-gradient);
+    color: var(--black);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 0.95rem;
+}
+
+/* Main Content Area */
+.app-content {
+    flex: 1;
+    padding: 1.75rem;
+    background-color: var(--bg-dark);
+}
+
+/* -------------------------------------------------------------
+   REQUIREMENT 1: DASHBOARD BACKGROUND (GOLD THEME)
+   Applied specifically to Admin Dashboard & Teacher Dashboard
+   ------------------------------------------------------------- */
+body.page-dashboard .app-content {
+    background-color: var(--gold) !important;
+    background: var(--gold-dashboard-bg) !important;
+    min-height: calc(100vh - var(--topbar-height));
+    position: relative;
+}
+
+/* On the Gold Dashboard background, maintain crisp readability */
+body.page-dashboard h3.text-dark,
+body.page-dashboard h4.text-dark {
+    color: var(--black) !important;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.4);
+}
+
+body.page-dashboard p.text-secondary {
+    color: #2b2308 !important;
+    font-weight: 600;
+}
+
+/* Dashboard Welcome Banner */
+.dashboard-welcome-banner {
+    background: linear-gradient(135deg, #000000 0%, #121212 50%, #1E1E1E 100%) !important;
+    border: 1.5px solid var(--gold) !important;
+    color: var(--text-white) !important;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* On Gold Dashboard: Cards sit with high contrast */
+body.page-dashboard .card-modern {
+    background-color: var(--bg-card) !important;
+    border: 1.5px solid rgba(0, 0, 0, 0.4) !important;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.4) !important;
+}
+
+body.page-dashboard .stat-card {
+    background-color: var(--bg-card) !important;
+    border: 1.5px solid rgba(0, 0, 0, 0.35) !important;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35) !important;
+}
+
+/* -------------------------------------------------------------
+   COMPONENTS: STAT CARDS (BLACK & GOLD)
+   ------------------------------------------------------------- */
+.stat-card {
+    background: var(--bg-card);
+    border: 1px solid var(--gold-border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-card);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.25s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-elevated);
+    border-color: var(--gold);
+}
+
+.stat-card-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.stat-title {
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-gold-light) !important;
+    font-weight: 700;
+    margin-bottom: 0.35rem;
+}
+
+.stat-value {
+    font-size: 2.1rem;
+    font-weight: 800;
+    color: var(--text-white) !important;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+}
+
+.stat-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.65rem;
+    border: 1px solid var(--gold-border);
+}
+
+.stat-icon.primary { background: rgba(212, 175, 55, 0.16); color: var(--gold); }
+.stat-icon.success { background: rgba(16, 185, 129, 0.16); color: #10b981; }
+.stat-icon.danger  { background: rgba(239, 68, 68, 0.16);  color: #ef4444; }
+.stat-icon.warning { background: rgba(245, 158, 11, 0.16); color: #f59e0b; }
+.stat-icon.info    { background: rgba(14, 165, 233, 0.16); color: #0ea5e9; }
+.stat-icon.purple  { background: rgba(212, 175, 55, 0.2);  color: var(--text-gold-light); }
+
+/* -------------------------------------------------------------
+   CARDS & PANELS (CARD BACKGROUND: #1E1E1E)
+   ------------------------------------------------------------- */
+.card-modern {
+    background: var(--bg-card);
+    border: 1px solid var(--gold-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    margin-bottom: 1.75rem;
+    overflow: hidden;
+    color: var(--text-white);
+}
+
+.card-modern .card-header {
+    background: var(--bg-card-header);
+    border-bottom: 1px solid var(--gold-border);
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card-modern .card-header .card-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-white);
+    margin-bottom: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.card-modern .card-header .card-title i {
+    color: var(--gold);
+}
+
+.card-modern .card-body {
+    padding: 1.5rem;
+    color: var(--text-white);
+}
+
+/* -------------------------------------------------------------
+   TABLES & DATATABLES (DARK BACKGROUND & GOLD ACCENTS)
+   ------------------------------------------------------------- */
+.table {
+    --bs-table-bg: var(--bg-card);
+    --bs-table-color: var(--text-white);
+    --bs-table-border-color: rgba(212, 175, 55, 0.15);
+    color: var(--text-white);
+    margin-bottom: 0;
+}
+
+.table > thead {
+    background-color: var(--bg-dark);
+}
+
+.table > thead th,
+.table-light,
+.table-light th {
+    background-color: #141414 !important;
+    color: var(--text-gold-light) !important;
+    border-bottom: 2px solid var(--gold-dark) !important;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+}
+
+.table tbody tr {
+    background-color: var(--bg-card);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.12);
+}
+
+.table tbody td {
+    background-color: var(--bg-card);
+    color: var(--text-white);
+    vertical-align: middle;
+}
+
+.table-hover tbody tr:hover td,
+.table-hover tbody tr:hover th {
+    background-color: rgba(212, 175, 55, 0.08) !important;
+}
+
+/* DataTables Controls */
+.dataTables_wrapper {
+    color: var(--text-white);
+}
+
+.dataTables_wrapper .dataTables_length select,
+.dataTables_wrapper .dataTables_filter input {
+    background-color: var(--bg-input) !important;
+    color: var(--text-white) !important;
+    border: 1px solid var(--gold-border) !important;
+    border-radius: var(--radius-sm);
+    padding: 0.35rem 0.65rem;
+}
+
+.dataTables_wrapper .dataTables_filter input:focus,
+.dataTables_wrapper .dataTables_length select:focus {
+    border-color: var(--gold) !important;
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(212, 175, 55, 0.25);
+}
+
+.dataTables_wrapper .dataTables_info {
+    color: var(--text-muted) !important;
+    padding-top: 0.75rem;
+}
+
+.dataTables_wrapper .dataTables_paginate {
+    padding-top: 0.75rem;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    color: var(--text-white) !important;
+    border: 1px solid var(--gold-border) !important;
+    background: var(--bg-card) !important;
+    border-radius: 6px;
+    margin: 0 2px;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current,
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+    background: var(--gold-gradient) !important;
+    color: var(--black) !important;
+    font-weight: 700;
+    border-color: var(--gold);
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    background: rgba(212, 175, 55, 0.2) !important;
+    color: var(--text-gold-light) !important;
+    border-color: var(--gold);
+}
+
+/* -------------------------------------------------------------
+   FORMS & INPUTS (DARK BACKGROUND & GOLD ACCENTS)
+   ------------------------------------------------------------- */
+.form-control,
+.form-select {
+    background-color: var(--bg-input) !important;
+    color: var(--text-white) !important;
+    border: 1px solid rgba(212, 175, 55, 0.3) !important;
+    border-radius: var(--radius-sm);
+}
+
+.form-control:focus,
+.form-select:focus {
+    background-color: #171717 !important;
+    color: var(--text-white) !important;
+    border-color: var(--gold) !important;
+    box-shadow: 0 0 0 0.25rem rgba(212, 175, 55, 0.25) !important;
+}
+
+.form-control::placeholder {
+    color: #707070 !important;
+}
+
+.form-label {
+    color: var(--text-gold-light) !important;
+    font-weight: 600;
+    margin-bottom: 0.35rem;
+}
+
+.form-check-input {
+    background-color: var(--bg-input);
+    border-color: rgba(212, 175, 55, 0.4);
+}
+
+.form-check-input:checked {
+    background-color: var(--gold);
+    border-color: var(--gold-dark);
+}
+
+.form-check-input:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 0.2rem rgba(212, 175, 55, 0.25);
+}
+
+/* -------------------------------------------------------------
+   BUTTONS (PREMIUM GOLD & BLACK)
+   ------------------------------------------------------------- */
+.btn-primary {
+    background: var(--gold-gradient) !important;
+    color: var(--black) !important;
+    font-weight: 700 !important;
+    border: none !important;
+    border-radius: var(--radius-sm);
+    padding: 0.55rem 1.25rem;
+    box-shadow: 0 3px 12px rgba(212, 175, 55, 0.35);
+    transition: all 0.2s ease;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background: var(--gold-gradient-hover) !important;
+    color: var(--black) !important;
+    box-shadow: 0 6px 18px rgba(212, 175, 55, 0.45);
+    transform: translateY(-1px);
+}
+
+.btn-outline-primary {
+    border-color: var(--gold) !important;
+    color: var(--gold) !important;
+    font-weight: 600;
+    background: transparent;
+    border-radius: var(--radius-sm);
+}
+
+.btn-outline-primary:hover {
+    background: var(--gold-gradient) !important;
+    border-color: transparent !important;
+    color: var(--black) !important;
+    box-shadow: 0 4px 14px rgba(212, 175, 55, 0.35);
+}
+
+.btn-light {
+    background: #242424 !important;
+    color: var(--text-white) !important;
+    border: 1px solid var(--gold-border) !important;
+}
+
+.btn-light:hover {
+    background: #303030 !important;
+    color: var(--text-gold-light) !important;
+    border-color: var(--gold);
+}
+
+.btn-outline-secondary {
+    border-color: rgba(212, 175, 55, 0.35) !important;
+    color: #D1D5DB !important;
+}
+
+.btn-outline-secondary:hover {
+    background: rgba(212, 175, 55, 0.15) !important;
+    color: var(--text-gold-light) !important;
+    border-color: var(--gold) !important;
+}
+
+/* -------------------------------------------------------------
+   BADGES & ACCENTS
+   ------------------------------------------------------------- */
+.badge.bg-light {
+    background-color: #242424 !important;
+    color: var(--text-white) !important;
+    border: 1px solid rgba(212, 175, 55, 0.3) !important;
+}
+
+.badge.bg-primary,
+.badge.bg-primary-subtle {
+    background-color: rgba(212, 175, 55, 0.2) !important;
+    color: var(--text-gold-light) !important;
+    border: 1px solid rgba(212, 175, 55, 0.4) !important;
+}
+
+/* Status Badges */
+.badge-status-present,
+.badge.bg-success-subtle {
+    background-color: rgba(16, 185, 129, 0.18) !important;
+    color: #34d399 !important;
+    border: 1px solid rgba(16, 185, 129, 0.4) !important;
+}
+
+.badge-status-absent,
+.badge.bg-danger-subtle {
+    background-color: rgba(239, 68, 68, 0.18) !important;
+    color: #f87171 !important;
+    border: 1px solid rgba(239, 68, 68, 0.4) !important;
+}
+
+.badge-status-late,
+.badge.bg-warning-subtle {
+    background-color: rgba(245, 158, 11, 0.18) !important;
+    color: #fbbf24 !important;
+    border: 1px solid rgba(245, 158, 11, 0.4) !important;
+}
+
+.badge-status-excused,
+.badge.bg-info-subtle {
+    background-color: rgba(14, 165, 233, 0.18) !important;
+    color: #38bdf8 !important;
+    border: 1px solid rgba(14, 165, 233, 0.4) !important;
+}
+
+/* -------------------------------------------------------------
+   MODALS & DROPDOWNS
+   ------------------------------------------------------------- */
+.modal-content {
+    background-color: var(--bg-card);
+    border: 1.5px solid var(--gold);
+    border-radius: var(--radius-lg);
+    color: var(--text-white);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.8);
+}
+
+.modal-header {
+    background-color: var(--black) !important;
+    border-bottom: 1px solid var(--gold-border);
+    color: var(--text-white);
+}
+
+.modal-header .modal-title {
+    color: var(--text-gold-light);
+}
+
+.modal-footer {
+    background-color: #151515 !important;
+    border-top: 1px solid var(--gold-border);
+}
+
+.dropdown-menu {
+    background-color: var(--bg-card);
+    border: 1px solid var(--gold-dark);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
+    color: var(--text-white);
+}
+
+.dropdown-item {
+    color: #E0E0E0;
+    transition: all 0.15s ease;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+    background-color: var(--gold-subtle);
+    color: var(--text-gold-light);
+}
+
+.dropdown-divider {
+    border-color: var(--gold-border);
+}
+
+/* List Groups */
+.list-group-item {
+    background-color: var(--bg-card);
+    border-color: rgba(212, 175, 55, 0.15);
+    color: var(--text-white);
+}
+
+/* -------------------------------------------------------------
+   AUTH SCREENS (LOGIN, REGISTER)
+   ------------------------------------------------------------- */
+.auth-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.15) 0%, rgba(0, 0, 0, 0.95) 90%), var(--bg-dark);
+    padding: 2rem 1rem;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 480px;
+    background: var(--bg-card);
+    border: 1px solid var(--gold);
+    border-radius: var(--radius-xl);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+    overflow: hidden;
+}
+
+.auth-header {
+    background: var(--black);
+    padding: 2.25rem 2rem 2rem;
+    text-align: center;
+    color: var(--text-white);
+    position: relative;
+    border-bottom: 2px solid var(--gold);
+}
+
+.auth-brand-icon {
+    width: 54px;
+    height: 54px;
+    margin: 0 auto 0.85rem;
+    background: var(--gold-gradient);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.85rem;
+    color: var(--black);
+    box-shadow: 0 8px 18px rgba(212, 175, 55, 0.4);
+}
+
+.auth-body {
+    padding: 2rem;
+    background: var(--bg-card);
+}
+
+/* Password Toggle Eye */
+.password-group {
+    position: relative;
+}
+
+.password-group .form-control {
+    padding-right: 44px;
+}
+
+.password-toggle-btn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    color: var(--text-gold-light);
+    cursor: pointer;
+    z-index: 5;
+    transition: color 0.15s ease;
+}
+
+.password-toggle-btn:hover {
+    color: var(--gold);
+}
+
+/* -------------------------------------------------------------
+   ATTENDANCE MARKING CONTROLS
+   ------------------------------------------------------------- */
+.attendance-toggle-group {
+    display: inline-flex;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    border: 1px solid var(--gold-border);
+    background: #141414;
+    padding: 2px;
+    gap: 2px;
+}
+
+.attendance-toggle-btn {
+    padding: 0.35rem 0.75rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    border: none;
+    background: transparent;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    color: #D1D5DB;
+}
+
+.attendance-toggle-btn.btn-present.active,
+.attendance-toggle-btn.btn-present:hover {
+    background: #10b981;
+    color: #ffffff;
+}
+
+.attendance-toggle-btn.btn-absent.active,
+.attendance-toggle-btn.btn-absent:hover {
+    background: #ef4444;
+    color: #ffffff;
+}
+
+.attendance-toggle-btn.btn-late.active,
+.attendance-toggle-btn.btn-late:hover {
+    background: #f59e0b;
+    color: #ffffff;
+}
+
+.attendance-toggle-btn.btn-excused.active,
+.attendance-toggle-btn.btn-excused:hover {
+    background: #0ea5e9;
+    color: #ffffff;
+}
+
+/* QR Code Scanner Area */
+#qr-reader {
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+    border: 2px dashed var(--gold);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: #141414;
+}
+
+/* Footer Styling */
+footer.app-footer {
+    background-color: var(--black) !important;
+    border-top: 1px solid var(--gold-border) !important;
+    color: var(--text-muted);
+}
+
+/* -------------------------------------------------------------
+   PRINT MEDIA QUERY
+   ------------------------------------------------------------- */
+@media print {
+    .app-sidebar,
+    .app-topbar,
+    .btn,
+    .card-header .btn,
+    .no-print {
+        display: none !important;
+    }
+
+    .app-main {
+        margin-left: 0 !important;
+        padding: 0 !important;
+        background: #ffffff !important;
+    }
+
+    .app-content {
+        padding: 0 !important;
+        background: #ffffff !important;
+    }
+
+    .card-modern {
+        border: none !important;
+        box-shadow: none !important;
+        background: #ffffff !important;
+        color: #000000 !important;
+    }
+
+    body {
+        background: #ffffff !important;
+        color: #000000 !important;
+    }
+}
+
+/* -------------------------------------------------------------
+   RESPONSIVE QUERIES
+   ------------------------------------------------------------- */
+@media (max-width: 991.98px) {
+    .app-sidebar {
+        transform: translateX(-100%);
+    }
+
+    .app-sidebar.show {
+        transform: translateX(0);
+    }
+
+    .app-main {
+        margin-left: 0;
+    }
+
+    .topbar-toggle {
+        display: block;
+    }
+}
